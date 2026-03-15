@@ -1,20 +1,21 @@
 # thino.dev
 
-This repository contains the source code for my personal website and tech blog.
+This repository contains the source code for my personal website and technical blog.
 
-The website documents my journey into cloud computing and artificial intelligence.
+The website documents my journey into cloud computing, artificial intelligence, and infrastructure engineering.
 
 ## Topics Covered
 
-- Cloud engineering
-- Azure and AWS labs
-- AI learning
-- Technical experiments
+- Cloud Engineering
+- Microsoft Azure Labs
+- Amazon Web Services Labs
+- Artificial Intelligence
+- Technical Experiments
 
 ## Website
 
-https://thino.dev
+🌐 https://thino.dev
 
 ## Goal
 
-Share my learning journey and build a portfolio for cloud and AI engineering.
+Share my learning journey and build a professional portfolio for cloud and AI engineering.
