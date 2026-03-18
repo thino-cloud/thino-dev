@@ -14,45 +14,38 @@ body {
     scroll-behavior: smooth;
 }
 
-/* NAVBAR */
+/* NAV */
 .nav {
     position: fixed;
-    top: 0;
     width: 100%;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
     padding: 15px;
     text-align: center;
-    z-index: 1000;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
 }
 
 .nav a {
     margin: 0 15px;
     color: #4cc9f0;
     text-decoration: none;
-    font-weight: bold;
 }
 
 /* HERO */
 .hero {
     text-align: center;
-    padding: 140px 20px 100px;
+    padding: 140px 20px;
 }
 
 .hero h1 {
-    font-size: 48px;
+    font-size: 50px;
     color: #4cc9f0;
 }
 
-.buttons {
-    margin-top: 20px;
-}
-
+/* BUTTON */
 .btn {
     background: #4cc9f0;
     color: black;
-    padding: 12px 24px;
-    margin: 10px;
+    padding: 12px 25px;
     border-radius: 10px;
     text-decoration: none;
     transition: 0.3s;
@@ -68,7 +61,7 @@ body {
     text-align: center;
 }
 
-/* PROJECT CARDS */
+/* PROJECTS */
 .projects {
     display: flex;
     flex-wrap: wrap;
@@ -76,13 +69,20 @@ body {
 }
 
 .card {
-    width: 280px;
+    width: 300px;
     margin: 15px;
     padding: 20px;
     border-radius: 15px;
     background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    transition: 0.3s;
+    backdrop-filter: blur(12px);
+    transition: 0.4s;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .card:hover {
@@ -93,13 +93,17 @@ body {
     color: #4cc9f0;
 }
 
-/* SKILLS */
-.skill-box {
+.tech {
+    margin-top: 10px;
+}
+
+.tech span {
+    background: rgba(255,255,255,0.1);
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin: 3px;
     display: inline-block;
-    padding: 15px 25px;
-    margin: 10px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.05);
+    font-size: 12px;
 }
 
 /* FOOTER */
@@ -116,57 +120,69 @@ body {
 <div class="nav">
     <a href="#home">Home</a>
     <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
 </div>
 
-<!-- HERO -->
 <div id="home" class="hero">
     <h1>🚀 thino.dev</h1>
     <p>Cloud & AI Engineer Journey</p>
-    <p>Building real-world cloud solutions with Azure, AI & DevOps</p>
-
-    <div class="buttons">
-        <a class="btn" href="https://github.com/thino-cloud">GitHub</a>
-    </div>
+    <br>
+    <a class="btn" href="https://github.com/thino-cloud">GitHub</a>
 </div>
 
-<!-- PROJECTS -->
 <div id="projects" class="section">
-    <h2>🚀 Projects</h2>
+    <h2>🚀 Real Projects</h2>
 
     <div class="projects">
+
         <div class="card">
-            <h3>Azure Web App</h3>
-            <p>Deployed thino.dev using Azure App Service</p>
+            <h3>Azure Web App Deployment</h3>
+            <p>Custom domain + SSL + CI/CD with GitHub Actions</p>
+            <div class="tech">
+                <span>Azure</span>
+                <span>App Service</span>
+                <span>CI/CD</span>
+            </div>
         </div>
 
         <div class="card">
             <h3>CI/CD Pipeline</h3>
-            <p>GitHub Actions auto-deployment setup</p>
+            <p>Automated deployment using GitHub Actions</p>
+            <div class="tech">
+                <span>GitHub Actions</span>
+                <span>DevOps</span>
+            </div>
         </div>
 
         <div class="card">
-            <h3>Future AI Project</h3>
-            <p>Coming soon...</p>
+            <h3>Azure VM Lab (Coming)</h3>
+            <p>Networking, security & monitoring setup</p>
+            <div class="tech">
+                <span>Azure VM</span>
+                <span>Networking</span>
+            </div>
         </div>
+
     </div>
 </div>
 
-<!-- SKILLS -->
-<div id="skills" class="section">
-    <h2>🚀 Skills</h2>
-
-    <div class="skill-box">Azure</div>
-    <div class="skill-box">Cloud Computing</div>
-    <div class="skill-box">AI</div>
-    <div class="skill-box">DevOps</div>
-    <div class="skill-box">GitHub Actions</div>
-</div>
-
-<!-- FOOTER -->
 <div class="footer">
-    <p>© 2026 thino.dev | Cloud & AI Engineer</p>
+    <p>© 2026 thino.dev | Cloud Engineer</p>
 </div>
+
+<script>
+const cards = document.querySelectorAll('.card');
+
+window.addEventListener('scroll', () => {
+    const trigger = window.innerHeight * 0.85;
+
+    cards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        if(top < trigger){
+            card.classList.add('show');
+        }
+    });
+});
+</script>
 
 </body>
 </html>
