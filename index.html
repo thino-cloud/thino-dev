@@ -1,107 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>thino.dev</title>
- 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: white;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>thino.dev</title>
 
-    .container {
-      text-align: center;
-      padding: 100px 20px;
-    }
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0a0f1f, #111c3d);
+    color: white;
+    overflow-x: hidden;
+}
 
-    h1 {
-      font-size: 3rem;
-      color: #38bdf8;
-      margin-bottom: 10px;
-    }
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    animation: fadeIn 1.5s ease-in;
+}
 
-    h2 {
-      font-weight: 400;
-      color: #cbd5e1;
-    }
+.hero h1 {
+    font-size: 48px;
+    color: #4cc9f0;
+}
 
-    .tagline {
-      margin-top: 20px;
-      font-size: 1.2rem;
-      color: #94a3b8;
-    }
+.hero p {
+    color: #a0aec0;
+    margin-top: 10px;
+}
 
-    .buttons {
-      margin-top: 40px;
-    }
+/* BUTTONS */
+.buttons {
+    margin-top: 30px;
+}
 
-    .btn {
-      text-decoration: none;
-      padding: 12px 24px;
-      margin: 10px;
-      border-radius: 8px;
-      background: #38bdf8;
-      color: #0f172a;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+.btn {
+    background: #4cc9f0;
+    color: black;
+    padding: 12px 24px;
+    margin: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
 
-    .btn:hover {
-      background: #0ea5e9;
-    }
+.btn:hover {
+    transform: scale(1.1);
+    background: #38bdf8;
+}
 
-    .section {
-      padding: 60px 20px;
-      background: #020617;
-    }
+/* SKILLS */
+.skills {
+    padding: 80px 20px;
+    text-align: center;
+}
 
-    .skills {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 30px;
-    }
+.skill-box {
+    display: inline-block;
+    padding: 15px 25px;
+    margin: 10px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
 
-    .skill {
-      background: #1e293b;
-      padding: 15px 25px;
-      border-radius: 8px;
-    }
-  </style>
+.skill-box:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.1);
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="hero">
     <h1>🚀 thino.dev</h1>
-    <h2>Cloud & AI Engineer Journey</h2>
-
-    <p class="tagline">
-      Building real-world cloud solutions with Azure, AI & DevOps
-    </p>
+    <p>Cloud & AI Engineer Journey</p>
+    <p>Building real-world cloud solutions with Azure, AI & DevOps</p>
 
     <div class="buttons">
-      <a href="https://github.com" class="btn">GitHub</a>
-      <a href="#" class="btn">Projects</a>
+        <a class="btn" href="https://github.com/thino-cloud">GitHub</a>
+        <a class="btn" href="#">Projects</a>
     </div>
-  </div>
+</div>
 
-  <div class="section">
-    <h2 style="text-align:center;">🚀 Skills</h2>
+<div class="skills">
+    <h2>🚀 Skills</h2>
 
-    <div class="skills">
-      <div class="skill">Azure</div>
-      <div class="skill">Cloud Computing</div>
-      <div class="skill">AI</div>
-      <div class="skill">DevOps</div>
-      <div class="skill">GitHub Actions</div>
-    </div>
-  </div>
+    <div class="skill-box">Azure</div>
+    <div class="skill-box">Cloud Computing</div>
+    <div class="skill-box">AI</div>
+    <div class="skill-box">DevOps</div>
+    <div class="skill-box">GitHub Actions</div>
+</div>
 
 </body>
 </html>
