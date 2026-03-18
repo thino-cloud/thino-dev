@@ -11,14 +11,32 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #0a0f1f, #111c3d);
     color: white;
-    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* NAVBAR */
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.nav a {
+    margin: 0 15px;
+    color: #4cc9f0;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 /* HERO */
 .hero {
     text-align: center;
-    padding: 100px 20px;
-    animation: fadeIn 1.5s ease-in;
+    padding: 140px 20px 100px;
 }
 
 .hero h1 {
@@ -26,14 +44,8 @@ body {
     color: #4cc9f0;
 }
 
-.hero p {
-    color: #a0aec0;
-    margin-top: 10px;
-}
-
-/* BUTTONS */
 .buttons {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .btn {
@@ -48,52 +60,100 @@ body {
 
 .btn:hover {
     transform: scale(1.1);
-    background: #38bdf8;
 }
 
-/* SKILLS */
-.skills {
+/* SECTION */
+.section {
     padding: 80px 20px;
     text-align: center;
 }
 
+/* PROJECT CARDS */
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 280px;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h3 {
+    color: #4cc9f0;
+}
+
+/* SKILLS */
 .skill-box {
     display: inline-block;
     padding: 15px 25px;
     margin: 10px;
     border-radius: 12px;
     background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    transition: 0.3s;
 }
 
-.skill-box:hover {
-    transform: translateY(-5px);
-    background: rgba(255,255,255,0.1);
-}
-
-/* ANIMATION */
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 40px;
+    color: #888;
 }
 </style>
 </head>
 
 <body>
 
-<div class="hero">
+<div class="nav">
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+</div>
+
+<!-- HERO -->
+<div id="home" class="hero">
     <h1>🚀 thino.dev</h1>
     <p>Cloud & AI Engineer Journey</p>
     <p>Building real-world cloud solutions with Azure, AI & DevOps</p>
 
     <div class="buttons">
         <a class="btn" href="https://github.com/thino-cloud">GitHub</a>
-        <a class="btn" href="#">Projects</a>
     </div>
 </div>
 
-<div class="skills">
+<!-- PROJECTS -->
+<div id="projects" class="section">
+    <h2>🚀 Projects</h2>
+
+    <div class="projects">
+        <div class="card">
+            <h3>Azure Web App</h3>
+            <p>Deployed thino.dev using Azure App Service</p>
+        </div>
+
+        <div class="card">
+            <h3>CI/CD Pipeline</h3>
+            <p>GitHub Actions auto-deployment setup</p>
+        </div>
+
+        <div class="card">
+            <h3>Future AI Project</h3>
+            <p>Coming soon...</p>
+        </div>
+    </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills" class="section">
     <h2>🚀 Skills</h2>
 
     <div class="skill-box">Azure</div>
@@ -101,6 +161,11 @@ body {
     <div class="skill-box">AI</div>
     <div class="skill-box">DevOps</div>
     <div class="skill-box">GitHub Actions</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <p>© 2026 thino.dev | Cloud & AI Engineer</p>
 </div>
 
 </body>
