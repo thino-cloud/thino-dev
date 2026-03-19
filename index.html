@@ -10,6 +10,229 @@
 <style>
 :root {
     --primary: #4cc9f0;
+    --bg-dark: #050a18;
+    --glass: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.1);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-dark);
+    color: #e0e0e0;
+    scroll-behavior: smooth;
+}
+
+/* NAV */
+.nav {
+    position: fixed;
+    width: 100%;
+    padding: 15px;
+    background: rgba(5,10,24,0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    text-align: center;
+}
+
+.nav a {
+    margin: 0 15px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.nav a:hover {
+    color: var(--primary);
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 140px 20px 100px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    background: linear-gradient(to right, #fff, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: #aaa;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--primary);
+    color: black;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+/* SECTIONS */
+.section {
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.title {
+    border-left: 4px solid var(--primary);
+    padding-left: 10px;
+    color: var(--primary);
+}
+
+/* CARDS */
+.card {
+    background: var(--glass);
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 25px;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+.card ul {
+    padding-left: 20px;
+}
+
+/* ANIMATION */
+.hidden {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 0.6s ease;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 50px;
+    color: #666;
+    border-top: 1px solid var(--border);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="https://github.com/thino-cloud" target="_blank">GitHub</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>🚀 Cloud & AI Engineer</h1>
+    <p>Building real-world Azure infrastructure and AI solutions.</p>
+    <a href="#projects" class="btn">View Projects</a>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="section hidden">
+    <h2 class="title">About</h2>
+    <div class="card">
+        <p>
+        I’m an IT professional based in Switzerland transitioning into cloud and AI engineering.
+        My focus is on building real-world Azure infrastructure, automation, and developing practical AI skills.
+        </p>
+    </div>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects" class="section hidden">
+    <h2 class="title">Projects</h2>
+
+    <div class="card">
+        <h3>Azure VM Networking & Security Lab</h3>
+
+        <p><strong>Goal:</strong> Build a secure and scalable virtual machine environment in Azure.</p>
+
+        <p><strong>Architecture:</strong></p>
+        <ul>
+            <li>Virtual Network with subnets</li>
+            <li>Linux and Windows Virtual Machines</li>
+            <li>Public IP and Network Interfaces</li>
+            <li>Network Security Groups (NSG)</li>
+        </ul>
+
+        <p><strong>What I implemented:</strong></p>
+        <ul>
+            <li>Deployed Linux & Windows VMs</li>
+            <li>Configured SSH and RDP access</li>
+            <li>Applied NSG rules for secure access</li>
+            <li>Built internal Azure networking</li>
+        </ul>
+
+        <p><strong>Tech:</strong> Azure VM, VNet, NSG, Linux, Windows Server</p>
+
+        <p><strong>Lessons Learned:</strong></p>
+        <ul>
+            <li>Azure networking fundamentals</li>
+            <li>Security best practices with NSG</li>
+            <li>Managing multi-OS cloud environments</li>
+        </ul>
+
+        <a href="https://github.com/thino-cloud" target="_blank" class="btn">View on GitHub</a>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 thino.dev | Zurich, Switzerland</p>
+</footer>
+
+<!-- ANIMATION SCRIPT -->
+<script>
+const elements = document.querySelectorAll('.hidden');
+
+window.addEventListener('scroll', () => {
+    const trigger = window.innerHeight * 0.85;
+
+    elements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < trigger) {
+            el.classList.add('show');
+        }
+    });
+});
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>thino.dev | Cloud & AI Engineer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #4cc9f0;
     --bg: #050a18;
     --glass: rgba(255,255,255,0.04);
     --border: rgba(255,255,255,0.1);
