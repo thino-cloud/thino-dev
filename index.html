@@ -30,6 +30,148 @@ body {
     padding: 15px;
     background: rgba(5,10,24,0.8);
     backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.nav a {
+    margin: 0 15px;
+    color: #ccc;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: var(--primary);
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 140px 20px 100px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    background: linear-gradient(to right, #fff, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--primary);
+    color: black;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+/* SECTIONS */
+.section {
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.title {
+    border-left: 4px solid var(--primary);
+    padding-left: 10px;
+    color: var(--primary);
+}
+
+/* CARDS */
+.card {
+    background: var(--glass);
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 25px;
+    border: 1px solid var(--border);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 50px;
+    color: #666;
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="https://github.com/thino-cloud" target="_blank">GitHub</a>
+</div>
+
+<div class="hero">
+    <h1>🚀 Cloud & AI Engineer</h1>
+    <p>Building real-world Azure infrastructure and AI solutions.</p>
+    <a href="#projects" class="btn">View Projects</a>
+</div>
+
+<div id="about" class="section">
+    <h2 class="title">About</h2>
+    <div class="card">
+        <p>
+        I’m an IT professional based in Switzerland transitioning into cloud and AI engineering.
+        My focus is on building real-world Azure infrastructure and automation.
+        </p>
+    </div>
+</div>
+
+<div id="projects" class="section">
+    <h2 class="title">Projects</h2>
+
+    <div class="card">
+        <h3>Azure VM Networking & Security Lab</h3>
+        <p>Deployed Linux & Windows VMs, configured VNet, NSG and secure access.</p>
+
+        <a href="https://github.com/thino-cloud/azure-vm-networking-lab" target="_blank" class="btn">
+            View on GitHub
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 thino.dev</p>
+</footer>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>thino.dev | Cloud & AI Engineer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #4cc9f0;
+    --bg-dark: #050a18;
+    --glass: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.1);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-dark);
+    color: #e0e0e0;
+    scroll-behavior: smooth;
+}
+
+/* NAV */
+.nav {
+    position: fixed;
+    width: 100%;
+    padding: 15px;
+    background: rgba(5,10,24,0.8);
+    backdrop-filter: blur(10px);
     z-index: 1000;
     text-align: center;
 }
