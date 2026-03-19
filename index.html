@@ -1,6 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>thino.dev | Cloud & AI Engineer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #4cc9f0;
+    --bg: #050a18;
+    --glass: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.1);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: #e0e0e0;
+}
+
+/* NAV */
+.nav {
+    position: fixed;
+    width: 100%;
+    padding: 15px;
+    background: rgba(5,10,24,0.8);
+    backdrop-filter: blur(10px);
+}
+
+.nav a {
+    margin: 0 15px;
+    color: #ccc;
+    text-decoration: none;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 140px 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    background: linear-gradient(to right, white, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn {
+    background: var(--primary);
+    padding: 12px 25px;
+    color: black;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+/* SECTIONS */
+.section {
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.title {
+    border-left: 4px solid var(--primary);
+    padding-left: 10px;
+    color: var(--primary);
+}
+
+/* CARDS */
+.card {
+    background: var(--glass);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+/* ANIMATION */
+.hidden {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 0.6s ease;
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="https://github.com/thino-cloud">GitHub</a>
+</div>
+
+<div class="hero">
+    <h1>🚀 Cloud & AI Engineer</h1>
+    <p>Building real-world Azure infrastructure and AI solutions.</p>
+    <br>
+    <a href="#projects" class="btn">View Projects</a>
+</div>
+
+<div id="about" class="section hidden">
+    <h2 class="title">About</h2>
+    <div class="card">
+        <p>
+        I’m an IT professional based in Switzerland transitioning into cloud and AI engineering.
+        My focus is on building real-world Azure projects, automation, and developing practical AI skills.
+        </p>
+    </div>
+</div>
+
+<div id="projects" class="section hidden">
+    <h2 class="title">Projects</h2>
+
+    <div class="card">
+        <h3>Azure Web App Deployment</h3>
+        <p>
+        Built and deployed a production-ready web application using Azure App Service,
+        including custom domain configuration, SSL, and CI/CD with GitHub Actions.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>Hybrid VNet Peering</h3>
+        <p>
+        Configured secure communication between Linux and Windows virtual machines
+        using Azure networking and virtual network peering.
+        </p>
+    </div>
+</div>
+
+<footer class="section">
+    <p style="text-align:center;">© 2026 thino.dev</p>
+</footer>
+
+<script>
+const elements = document.querySelectorAll('.hidden');
+
+window.addEventListener('scroll', () => {
+    const trigger = window.innerHeight * 0.85;
+
+    elements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < trigger) {
+            el.classList.add('show');
+        }
+    });
+});
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>thino.dev | Cloud & AI Engineer</title>
