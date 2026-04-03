@@ -1,215 +1,1227 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="home">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>thino.dev | Cloud & AI Engineer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>thino.dev — Cloud & AI Engineer</title>
+  <meta name="description" content="Cloud & AI Engineer in progress. Building real-world Azure, AWS and AI projects while documenting the journey in public." />
+  <meta property="og:title" content="thino.dev — Cloud & AI Engineer" />
+  <meta property="og:description" content="Building real-world Azure, AWS and AI projects." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --azure: #0078d4;
+      --azure-light: #50e6ff;
+      --azure-dark: #005a9e;
+      --purple: #7b3fe4;
+      --purple-light: #b98cf7;
+      --bg: #09090f;
+      --bg2: #0f0f1a;
+      --bg3: #151527;
+      --border: rgba(120,130,200,0.15);
+      --border-bright: rgba(120,130,200,0.35);
+      --text: #e8eaf6;
+      --text-muted: #8892b0;
+      --text-dim: #4a5280;
+      --mono: 'Space Mono', monospace;
+      --sans: 'Outfit', sans-serif;
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-:root {
-    --primary: #4cc9f0;
-    --bg-dark: #050a18;
-    --glass: rgba(255,255,255,0.04);
-    --border: rgba(255,255,255,0.1);
-}
+    html { scroll-behavior: smooth; }
 
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: var(--bg-dark);
-    color: #e0e0e0;
-    scroll-behavior: smooth;
-}
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-/* NAV */
-.nav {
-    position: fixed;
-    width: 100%;
-    padding: 15px;
-    background: rgba(5,10,24,0.8);
-    backdrop-filter: blur(10px);
-    text-align: center;
-    z-index: 1000;
-}
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--azure-dark); border-radius: 3px; }
 
-.nav a {
-    margin: 0 15px;
-    color: #ccc;
-    text-decoration: none;
-    font-size: 0.9rem;
-}
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,120,212,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,120,212,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-.nav a:hover {
-    color: var(--primary);
-}
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      background: rgba(9,9,15,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
 
-/* HERO */
-.hero {
-    text-align: center;
-    padding: 140px 20px 100px;
-}
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 1rem;
+      color: var(--azure-light);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--purple-light); }
 
-.hero h1 {
-    font-size: 3rem;
-    background: linear-gradient(to right, #fff, var(--primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
 
-.hero p {
-    color: #aaa;
-    max-width: 600px;
-    margin: 10px auto;
-}
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a.active::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: var(--azure);
+      border-radius: 2px;
+      margin-top: 2px;
+    }
 
-/* BUTTON */
-.btn {
-    display: inline-block;
-    margin-top: 20px;
-    background: var(--primary);
-    color: black;
-    padding: 12px 25px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
-}
+    /* ── PAGES ── */
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding-top: 64px;
+      position: relative;
+      z-index: 1;
+    }
+    .page.active { display: block; }
 
-.btn:hover {
-    transform: translateY(-3px);
-}
+    /* ── SECTION ── */
+    section { padding: 5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
 
-/* SECTIONS */
-.section {
-    padding: 80px 20px;
-    max-width: 1000px;
-    margin: auto;
-}
+    /* ── HERO ── */
+    .hero {
+      min-height: calc(100vh - 64px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
-.title {
-    border-left: 4px solid var(--primary);
-    padding-left: 10px;
-    color: var(--primary);
-}
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--azure-light);
+      background: rgba(0,120,212,0.1);
+      border: 1px solid rgba(0,120,212,0.3);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
 
-/* CARDS */
-.card {
-    background: var(--glass);
-    padding: 25px;
-    border-radius: 15px;
-    margin-top: 25px;
-    border: 1px solid var(--border);
-    transition: 0.3s;
-}
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--azure-light);
+      box-shadow: 0 0 8px var(--azure-light);
+      animation: pulse 2s infinite;
+    }
 
-.card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary);
-}
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
 
-/* ANIMATION */
-.hidden {
-    opacity: 0;
-    transform: translateY(40px);
-}
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
 
-.show {
-    opacity: 1;
-    transform: translateY(0);
-    transition: 0.6s ease;
-}
+    .hero h1 .line-cloud { color: var(--azure-light); }
+    .hero h1 .line-ai { color: var(--purple-light); }
+    .hero h1 .line-eng {
+      background: linear-gradient(90deg, var(--azure-light), var(--purple-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 50px;
-    color: #666;
-    border-top: 1px solid var(--border);
-}
-</style>
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      font-family: var(--sans);
+    }
+
+    .btn-primary {
+      background: var(--azure);
+      color: white;
+      box-shadow: 0 0 20px rgba(0,120,212,0.35);
+    }
+    .btn-primary:hover {
+      background: #0091f5;
+      box-shadow: 0 0 32px rgba(0,120,212,0.55);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-bright);
+    }
+    .btn-ghost:hover {
+      color: var(--text);
+      border-color: rgba(120,130,200,0.6);
+      background: rgba(120,130,200,0.06);
+    }
+
+    .btn-purple {
+      background: rgba(123,63,228,0.15);
+      color: var(--purple-light);
+      border: 1px solid rgba(123,63,228,0.35);
+    }
+    .btn-purple:hover {
+      background: rgba(123,63,228,0.25);
+      box-shadow: 0 0 20px rgba(123,63,228,0.25);
+    }
+
+    /* ── STATS ROW ── */
+    .stats-row {
+      display: flex;
+      gap: 3rem;
+      padding-top: 4rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .stat-item { display: flex; flex-direction: column; gap: 4px; }
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--azure-light);
+    }
+    .stat-label { font-size: 0.8rem; color: var(--text-dim); letter-spacing: 0.5px; text-transform: uppercase; }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      margin-bottom: 3rem;
+    }
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--azure);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+    .section-title span { color: var(--azure-light); }
+    .section-sub {
+      margin-top: 0.75rem;
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 520px;
+    }
+
+    /* ── CARDS ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--azure), var(--purple));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .card:hover {
+      border-color: var(--border-bright);
+      background: var(--bg3);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .card:hover::before { opacity: 1; }
+
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1.25rem;
+    }
+    .card-icon.azure { background: rgba(0,120,212,0.15); }
+    .card-icon.aws { background: rgba(255,153,0,0.15); }
+    .card-icon.ai { background: rgba(123,63,228,0.15); }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.25rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 3px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.3px;
+    }
+    .tag-azure { background: rgba(0,120,212,0.12); color: var(--azure-light); border: 1px solid rgba(0,120,212,0.25); }
+    .tag-aws { background: rgba(255,153,0,0.1); color: #ffb84d; border: 1px solid rgba(255,153,0,0.25); }
+    .tag-ai { background: rgba(123,63,228,0.12); color: var(--purple-light); border: 1px solid rgba(123,63,228,0.25); }
+    .tag-neutral { background: rgba(120,130,200,0.08); color: var(--text-muted); border: 1px solid var(--border); }
+
+    .card-link {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--azure);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap 0.2s, color 0.2s;
+    }
+    .card-link:hover { color: var(--azure-light); gap: 8px; }
+
+    /* ── FOCUS GRID ── */
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .focus-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all 0.25s;
+    }
+    .focus-card:hover {
+      border-color: var(--border-bright);
+      background: var(--bg3);
+    }
+
+    .focus-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .focus-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .focus-items { list-style: none; }
+    .focus-items li {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .focus-items li:last-child { border-bottom: none; }
+    .focus-items li::before { content: '›'; color: var(--azure); font-weight: bold; }
+
+    /* ── CERT CARDS ── */
+    .cert-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: all 0.25s;
+    }
+    .cert-card:hover { border-color: var(--border-bright); background: var(--bg3); }
+
+    .cert-badge {
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .cert-badge.done { background: rgba(0,120,212,0.15); }
+    .cert-badge.wip { background: rgba(123,63,228,0.15); }
+
+    .cert-info { flex: 1; }
+    .cert-name { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .cert-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+    .cert-status {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-weight: 700;
+    }
+    .status-done { background: rgba(16,124,16,0.15); color: #4ec94e; border: 1px solid rgba(16,124,16,0.3); }
+    .status-wip { background: rgba(123,63,228,0.15); color: var(--purple-light); border: 1px solid rgba(123,63,228,0.3); }
+    .status-planned { background: rgba(120,130,200,0.08); color: var(--text-dim); border: 1px solid var(--border); }
+
+    /* ── BLOG CARDS ── */
+    .blog-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .blog-card:hover { border-color: var(--border-bright); background: var(--bg3); transform: translateY(-2px); }
+    .blog-meta { font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); margin-bottom: 0.75rem; }
+    .blog-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
+    .blog-excerpt { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(0,120,212,0.08), rgba(123,63,228,0.08));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 4rem 3rem;
+      text-align: center;
+    }
+    .cta-section h2 { font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; }
+    .cta-section p { color: var(--text-muted); margin-bottom: 2rem; font-size: 1rem; }
+
+    /* ── ABOUT PAGE ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-avatar {
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 280px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(0,120,212,0.2), rgba(123,63,228,0.2));
+      border: 1px solid var(--border-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+    }
+    .about-text h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.5px; }
+    .about-text p { color: var(--text-muted); line-height: 1.75; margin-bottom: 1rem; }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1.5rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .contact-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .contact-card:hover { border-color: var(--border-bright); background: var(--bg3); transform: translateY(-2px); }
+    .contact-icon { font-size: 1.8rem; }
+    .contact-name { font-weight: 700; font-size: 0.95rem; }
+    .contact-handle { font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); }
+
+    /* ── PROJECTS FILTER ── */
+    .filter-bar {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      padding: 6px 16px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .filter-btn:hover { border-color: var(--border-bright); color: var(--text); }
+    .filter-btn.active { background: var(--azure); border-color: var(--azure); color: white; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 2.5rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 2.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    footer p { font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim); }
+    footer a { color: var(--azure); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in { animation: fadeUp 0.5s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-blue {
+      width: 500px; height: 500px;
+      background: rgba(0,120,212,0.06);
+      top: -100px; right: -100px;
+    }
+    .orb-purple {
+      width: 400px; height: 400px;
+      background: rgba(123,63,228,0.05);
+      bottom: 10%; left: -100px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1rem; }
+      section { padding: 3rem 1.25rem; }
+      .hero { padding: 3rem 1.25rem; }
+      .hero h1 { letter-spacing: -1px; }
+      .focus-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .stats-row { gap: 1.5rem; flex-wrap: wrap; }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- NAV -->
-<div class="nav">
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="https://github.com/thino-cloud" target="_blank">GitHub</a>
-</div>
+  <!-- Ambient orbs -->
+  <div class="orb orb-blue"></div>
+  <div class="orb orb-purple"></div>
 
-<!-- HERO -->
-<div class="hero">
-    <h1>🚀 Cloud & AI Engineer in Progress</h1>
-    <p>
-        Building real-world Azure infrastructure and documenting my journey into cloud and artificial intelligence.
-    </p>
-    <a href="#projects" class="btn">View Projects</a>
-</div>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#" onclick="showPage('home')">thino<span>.dev</span></a>
+    <ul class="nav-links">
+      <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+      <li><a onclick="showPage('projects')" id="nav-projects">Projects</a></li>
+      <li><a onclick="showPage('certs')" id="nav-certs">Certs</a></li>
+      <li><a onclick="showPage('blog')" id="nav-blog">Blog</a></li>
+      <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+      <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<!-- ABOUT -->
-<div id="about" class="section hidden">
-    <h2 class="title">About</h2>
-    <div class="card">
-        <p>
-        I’m an IT professional based in Switzerland, transitioning into cloud and AI engineering.
-        My focus is on building real-world Azure infrastructure, networking, and automation.
-        </p>
-    </div>
-</div>
+  <!-- ══════════════════════════════════════════
+       PAGE: HOME
+  ══════════════════════════════════════════ -->
+  <div class="page active" id="page-home">
 
-<!-- PROJECTS -->
-<div id="projects" class="section hidden">
-    <h2 class="title">Projects</h2>
+    <!-- HERO -->
+    <div class="hero">
 
-    <div class="card">
-        <h3>Azure VM Networking & Security Lab</h3>
-
-        <p>
-        Built a secure cloud environment in Azure with Linux and Windows virtual machines.
-        </p>
-
-        <p><strong>What I implemented:</strong></p>
-        <ul>
-            <li>Virtual Network with subnet</li>
-            <li>Linux & Windows VM deployment</li>
-            <li>SSH (22) and RDP (3389) access</li>
-            <li>Network Security Groups (NSG)</li>
-        </ul>
-
-        <p style="font-size: 0.9rem; color: #aaa;">
-        Azure • Virtual Machines • Networking • Security
-        </p>
-
-        <a href="https://github.com/thino-cloud/azure-vm-networking-lab" target="_blank" class="btn">
-            View Project
+      <h1>
+        <span class="line-cloud">Cloud</span> &amp; <span class="line-ai">AI</span><br/>
+        <span class="line-eng">Engineer</span><br/>
+        in Progress.
+      </h1>
+      <p class="hero-sub">
+        Building real-world Azure, AWS and AI projects while documenting the journey in public.
+        Based in Zurich 🇨🇭
+      </p>
+      <div class="hero-btns">
+        <button class="btn btn-primary" onclick="showPage('projects')">
+          ⚡ View Projects
+        </button>
+        <a class="btn btn-ghost" href="https://github.com/thino-cloud" target="_blank">
+          ⌥ GitHub
         </a>
+        <button class="btn btn-purple" onclick="showPage('blog')">
+          ✦ Blog
+        </button>
+      </div>
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-num">AZ-900</span>
+          <span class="stat-label">Certified</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">3+</span>
+          <span class="stat-label">Cloud Labs</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">Azure</span>
+          <span class="stat-label">Primary Cloud</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">Public</span>
+          <span class="stat-label">Learning in</span>
+        </div>
+      </div>
     </div>
 
-</div>
+    <div class="divider"></div>
 
-<!-- FOOTER -->
-<footer>
-    <p>© 2026 thino.dev |  Cloud & AI Journey</p>
-</footer>
+    <!-- FEATURED PROJECTS -->
+    <section>
+      <div class="section-header">
+        <span class="section-tag">// featured_projects</span>
+        <h2 class="section-title">What I've <span>Built</span></h2>
+        <p class="section-sub">Real-world labs and projects — not just theory.</p>
+      </div>
+      <div class="cards-grid">
 
-<!-- ANIMATION -->
-<script>
-const elements = document.querySelectorAll('.hidden');
+        <div class="card fade-in">
+          <div class="card-icon azure">☁️</div>
+          <div class="card-title">Azure VM Networking & Security Lab</div>
+          <p class="card-desc">Built a secure cloud environment with Linux and Windows VMs, Virtual Networks, Subnets, NSGs and SSH/RDP access.</p>
+          <div class="tags">
+            <span class="tag tag-azure">Azure</span>
+            <span class="tag tag-azure">VMs</span>
+            <span class="tag tag-azure">NSG</span>
+            <span class="tag tag-neutral">Networking</span>
+          </div>
+          <a class="card-link" href="https://github.com/thino-cloud/azure-vm-networking-lab" target="_blank">View on GitHub →</a>
+        </div>
 
-window.addEventListener('scroll', () => {
-    const trigger = window.innerHeight * 0.85;
+        <div class="card fade-in delay-1">
+          <div class="card-icon aws">🟠</div>
+          <div class="card-title">AWS Cloud Lab</div>
+          <p class="card-desc">Deploying core AWS infrastructure with EC2, VPC, Security Groups and IAM — building hands-on experience with the AWS ecosystem.</p>
+          <div class="tags">
+            <span class="tag tag-aws">AWS</span>
+            <span class="tag tag-aws">EC2</span>
+            <span class="tag tag-aws">VPC</span>
+            <span class="tag tag-neutral">IAM</span>
+          </div>
+          <a class="card-link" href="https://github.com/thino-cloud" target="_blank">Coming soon →</a>
+        </div>
 
-    elements.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        if (top < trigger) {
-            el.classList.add('show');
+        <div class="card fade-in delay-2">
+          <div class="card-icon ai">🤖</div>
+          <div class="card-title">AI Fundamentals Project</div>
+          <p class="card-desc">Exploring Azure AI services, machine learning concepts and practical AI integrations — preparing for the AI-900 certification.</p>
+          <div class="tags">
+            <span class="tag tag-ai">AI</span>
+            <span class="tag tag-ai">Azure AI</span>
+            <span class="tag tag-ai">Python</span>
+            <span class="tag tag-neutral">ML</span>
+          </div>
+          <a class="card-link" href="https://github.com/thino-cloud" target="_blank">In progress →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CURRENT FOCUS -->
+    <section>
+      <div class="section-header">
+        <span class="section-tag">// current_focus</span>
+        <h2 class="section-title">What I'm <span>Learning</span></h2>
+        <p class="section-sub">My active learning tracks right now.</p>
+      </div>
+      <div class="focus-grid">
+        <div class="focus-card">
+          <div class="focus-icon">☁️</div>
+          <div class="focus-title">Microsoft Azure</div>
+          <ul class="focus-items">
+            <li>Virtual Networks & NSGs</li>
+            <li>Azure Storage & Blob</li>
+            <li>Azure Functions</li>
+            <li>ARM / Bicep Templates</li>
+          </ul>
+        </div>
+        <div class="focus-card">
+          <div class="focus-icon">🟠</div>
+          <div class="focus-title">Amazon Web Services</div>
+          <ul class="focus-items">
+            <li>EC2 & VPC Fundamentals</li>
+            <li>S3 & IAM</li>
+            <li>AWS Lambda</li>
+            <li>CloudFormation</li>
+          </ul>
+        </div>
+        <div class="focus-card">
+          <div class="focus-icon">🤖</div>
+          <div class="focus-title">Artificial Intelligence</div>
+          <ul class="focus-items">
+            <li>Azure AI Services</li>
+            <li>Python for ML</li>
+            <li>AI-900 Certification</li>
+            <li>Learning in Public</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CERTS PREVIEW -->
+    <section>
+      <div class="section-header">
+        <span class="section-tag">// certifications</span>
+        <h2 class="section-title">My <span>Certs</span></h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem;max-width:640px;">
+        <div class="cert-card">
+          <div class="cert-badge done">🏅</div>
+          <div class="cert-info">
+            <div class="cert-name">Microsoft Azure Fundamentals</div>
+            <div class="cert-desc">AZ-900 · Cloud concepts, Azure services, security, compliance</div>
+          </div>
+          <span class="cert-status status-done">COMPLETED</span>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge wip">🎯</div>
+          <div class="cert-info">
+            <div class="cert-name">Microsoft Azure AI Fundamentals</div>
+            <div class="cert-desc">AI-900 · AI workloads, ML, Azure AI services</div>
+          </div>
+          <span class="cert-status status-wip">IN PROGRESS</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- BLOG PREVIEW -->
+    <section>
+      <div class="section-header">
+        <span class="section-tag">// latest_posts</span>
+        <h2 class="section-title">From the <span>Blog</span></h2>
+        <p class="section-sub">Documenting the journey — labs, certs and insights.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="blog-card" onclick="showPage('blog')">
+          <div class="blog-meta">MAR 2026 · Azure Labs</div>
+          <div class="blog-title">Building My First Azure VM Networking Lab</div>
+          <p class="blog-excerpt">How I set up VMs, VNets, NSGs and secure access in Azure — step by step.</p>
+        </div>
+        <div class="blog-card" onclick="showPage('blog')">
+          <div class="blog-meta">FEB 2026 · Certifications</div>
+          <div class="blog-title">How I Passed AZ-900 in 3 Weeks</div>
+          <p class="blog-excerpt">My study strategy, resources used, and lessons learned from the Azure Fundamentals exam.</p>
+        </div>
+        <div class="blog-card" onclick="showPage('blog')">
+          <div class="blog-meta">JAN 2026 · AI Learning</div>
+          <div class="blog-title">Why I'm Learning AI After Cloud</div>
+          <p class="blog-excerpt">The reason I decided to combine cloud engineering with AI — and what my roadmap looks like.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CTA -->
+    <section>
+      <div class="cta-section">
+        <h2>Let's connect. 👋</h2>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="showPage('contact')">Get in Touch</button>
+          <a class="btn btn-ghost" href="https://github.com/thino-cloud" target="_blank">GitHub Profile</a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-home -->
+
+
+  <!-- ══════════════════════════════════════════
+       PAGE: PROJECTS
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-projects">
+    <section>
+      <div class="section-header">
+        <span class="section-tag">// all_projects</span>
+        <h2 class="section-title">All <span>Projects</span></h2>
+        <p class="section-sub">Hands-on labs and builds across Azure, AWS and AI.</p>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+        <button class="filter-btn" onclick="filterProjects('azure', this)">Azure</button>
+        <button class="filter-btn" onclick="filterProjects('aws', this)">AWS</button>
+        <button class="filter-btn" onclick="filterProjects('ai', this)">AI</button>
+      </div>
+
+      <div class="cards-grid" id="projects-grid">
+
+        <div class="card" data-cat="azure">
+          <div class="card-icon azure">🔒</div>
+          <div class="card-title">Azure VM Networking & Security Lab</div>
+          <p class="card-desc">Built a secure Azure environment with Linux + Windows VMs, Virtual Network, Subnet, Network Security Groups, SSH/RDP access controls and Public IPs.</p>
+          <div class="tags">
+            <span class="tag tag-azure">Azure</span>
+            <span class="tag tag-azure">VMs</span>
+            <span class="tag tag-azure">VNet</span>
+            <span class="tag tag-azure">NSG</span>
+            <span class="tag tag-neutral">SSH</span>
+            <span class="tag tag-neutral">RDP</span>
+          </div>
+          <a class="card-link" href="https://github.com/thino-cloud/azure-vm-networking-lab" target="_blank">View on GitHub →</a>
+        </div>
+
+        <div class="card" data-cat="azure">
+          <div class="card-icon azure">💾</div>
+          <div class="card-title">Azure Storage Lab</div>
+          <p class="card-desc">Configuring Azure Blob Storage, Access Tiers, Lifecycle Management and SAS tokens for secure data access — coming soon.</p>
+          <div class="tags">
+            <span class="tag tag-azure">Azure</span>
+            <span class="tag tag-azure">Blob Storage</span>
+            <span class="tag tag-neutral">SAS Tokens</span>
+          </div>
+          <span style="font-size:0.8rem;color:var(--text-dim);font-family:var(--mono)">🔧 In Progress</span>
+        </div>
+
+        <div class="card" data-cat="aws">
+          <div class="card-icon aws">🌐</div>
+          <div class="card-title">AWS VPC & EC2 Lab</div>
+          <p class="card-desc">Building core AWS networking with VPC, public/private subnets, EC2 instances and Security Groups — mirroring the Azure lab on AWS.</p>
+          <div class="tags">
+            <span class="tag tag-aws">AWS</span>
+            <span class="tag tag-aws">EC2</span>
+            <span class="tag tag-aws">VPC</span>
+            <span class="tag tag-neutral">Security Groups</span>
+          </div>
+          <span style="font-size:0.8rem;color:var(--text-dim);font-family:var(--mono)">🔧 In Progress</span>
+        </div>
+
+        <div class="card" data-cat="aws">
+          <div class="card-icon aws">🔑</div>
+          <div class="card-title">AWS IAM & Policies Lab</div>
+          <p class="card-desc">Configuring IAM users, groups, roles and least-privilege policies — understanding identity and access management in AWS.</p>
+          <div class="tags">
+            <span class="tag tag-aws">AWS</span>
+            <span class="tag tag-aws">IAM</span>
+            <span class="tag tag-neutral">Policies</span>
+            <span class="tag tag-neutral">Security</span>
+          </div>
+          <span style="font-size:0.8rem;color:var(--text-dim);font-family:var(--mono)">📋 Planned</span>
+        </div>
+
+        <div class="card" data-cat="ai">
+          <div class="card-icon ai">🤖</div>
+          <div class="card-title">Azure AI Fundamentals Project</div>
+          <p class="card-desc">Exploring Azure Cognitive Services, Computer Vision, Language Understanding and Azure ML — hands-on preparation for AI-900.</p>
+          <div class="tags">
+            <span class="tag tag-ai">Azure AI</span>
+            <span class="tag tag-ai">Cognitive Services</span>
+            <span class="tag tag-ai">Python</span>
+          </div>
+          <span style="font-size:0.8rem;color:var(--text-dim);font-family:var(--mono)">🔧 In Progress</span>
+        </div>
+
+        <div class="card" data-cat="ai">
+          <div class="card-icon ai">🐍</div>
+          <div class="card-title">Python for Cloud & AI</div>
+          <p class="card-desc">Building Python scripts for Azure SDK, cloud automation and basic ML models — learning by doing with real cloud integrations.</p>
+          <div class="tags">
+            <span class="tag tag-ai">Python</span>
+            <span class="tag tag-azure">Azure SDK</span>
+            <span class="tag tag-neutral">Automation</span>
+          </div>
+          <span style="font-size:0.8rem;color:var(--text-dim);font-family:var(--mono)">📋 Planned</span>
+        </div>
+
+      </div>
+    </section>
+  </div><!-- /page-projects -->
+
+
+  <!-- ══════════════════════════════════════════
+       PAGE: CERTIFICATIONS
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-certs">
+    <section>
+      <div class="section-header">
+        <span class="section-tag">// certifications</span>
+        <h2 class="section-title">My <span>Certifications</span></h2>
+        <p class="section-sub">Credentials that validate real hands-on knowledge.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1.5rem;max-width:760px;">
+
+        <!-- AZ-900 -->
+        <div class="cert-card" style="flex-direction:column;align-items:flex-start;gap:1rem;">
+          <div style="display:flex;align-items:center;gap:1.25rem;width:100%;">
+            <div class="cert-badge done" style="width:60px;height:60px;font-size:1.8rem;">🏅</div>
+            <div class="cert-info">
+              <div class="cert-name" style="font-size:1.05rem;">Microsoft Azure Fundamentals</div>
+              <div class="cert-desc">AZ-900 · Microsoft · 2025</div>
+            </div>
+            <span class="cert-status status-done">COMPLETED</span>
+          </div>
+          <div style="padding-left:0;width:100%;">
+            <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.75rem;line-height:1.65;">
+              Core Azure cloud concepts including compute, networking, storage, identity, security, governance, and pricing. Demonstrates solid understanding of what Azure offers and how to navigate the ecosystem.
+            </p>
+            <div class="tags">
+              <span class="tag tag-azure">Cloud Concepts</span>
+              <span class="tag tag-azure">Azure Services</span>
+              <span class="tag tag-azure">Security</span>
+              <span class="tag tag-azure">Compliance</span>
+              <span class="tag tag-azure">Pricing</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI-900 -->
+        <div class="cert-card" style="flex-direction:column;align-items:flex-start;gap:1rem;">
+          <div style="display:flex;align-items:center;gap:1.25rem;width:100%;">
+            <div class="cert-badge wip" style="width:60px;height:60px;font-size:1.8rem;">🎯</div>
+            <div class="cert-info">
+              <div class="cert-name" style="font-size:1.05rem;">Microsoft Azure AI Fundamentals</div>
+              <div class="cert-desc">AI-900 · Microsoft · 2026 (expected)</div>
+            </div>
+            <span class="cert-status status-wip">IN PROGRESS</span>
+          </div>
+          <div style="width:100%;">
+            <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.75rem;line-height:1.65;">
+              AI workloads and considerations, machine learning principles, Computer Vision, Natural Language Processing, and conversational AI on Azure. Actively building labs to complement the theory.
+            </p>
+            <div class="tags">
+              <span class="tag tag-ai">AI Workloads</span>
+              <span class="tag tag-ai">Machine Learning</span>
+              <span class="tag tag-ai">Computer Vision</span>
+              <span class="tag tag-ai">NLP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AZ-104 planned -->
+        <div class="cert-card" style="flex-direction:column;align-items:flex-start;gap:1rem;">
+          <div style="display:flex;align-items:center;gap:1.25rem;width:100%;">
+            <div class="cert-badge" style="width:60px;height:60px;font-size:1.8rem;background:rgba(120,130,200,0.08);">📋</div>
+            <div class="cert-info">
+              <div class="cert-name" style="font-size:1.05rem;">Microsoft Azure Administrator</div>
+              <div class="cert-desc">AZ-104 · Microsoft · Roadmap</div>
+            </div>
+            <span class="cert-status status-planned">PLANNED</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div><!-- /page-certs -->
+
+
+  <!-- ══════════════════════════════════════════
+       PAGE: BLOG
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-blog">
+    <section>
+      <div class="section-header">
+        <span class="section-tag">// blog</span>
+        <h2 class="section-title">Learning in <span>Public</span></h2>
+        <p class="section-sub">Labs, certifications and insights — documented as I go.</p>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Azure Labs</button>
+        <button class="filter-btn">AWS Labs</button>
+        <button class="filter-btn">AI Learning</button>
+        <button class="filter-btn">Certifications</button>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+
+        <div class="blog-card" style="display:flex;gap:2rem;align-items:center;">
+          <div style="flex:1;">
+            <div class="blog-meta">MARCH 2026 · Azure Labs</div>
+            <div class="blog-title" style="font-size:1.2rem;">Building My First Azure VM Networking Lab</div>
+            <p class="blog-excerpt" style="margin-top:0.5rem;">A step-by-step walkthrough of how I built a secure Azure environment with VMs, Virtual Networks, NSGs and access controls — including the architecture diagram.</p>
+            <div class="tags" style="margin-top:1rem;">
+              <span class="tag tag-azure">Azure</span>
+              <span class="tag tag-neutral">Networking</span>
+            </div>
+          </div>
+          <a class="btn btn-ghost" style="flex-shrink:0;font-size:0.8rem;" href="#">Read →</a>
+        </div>
+
+        <div class="divider" style="margin:0;"></div>
+
+        <div class="blog-card" style="display:flex;gap:2rem;align-items:center;">
+          <div style="flex:1;">
+            <div class="blog-meta">FEBRUARY 2026 · Certifications</div>
+            <div class="blog-title" style="font-size:1.2rem;">How I Passed AZ-900 in 3 Weeks</div>
+            <p class="blog-excerpt" style="margin-top:0.5rem;">My study plan, resources, and honest take on what matters and what doesn't when preparing for the Azure Fundamentals exam.</p>
+            <div class="tags" style="margin-top:1rem;">
+              <span class="tag tag-azure">AZ-900</span>
+              <span class="tag tag-neutral">Certification</span>
+            </div>
+          </div>
+          <a class="btn btn-ghost" style="flex-shrink:0;font-size:0.8rem;" href="#">Read →</a>
+        </div>
+
+        <div class="divider" style="margin:0;"></div>
+
+        <div class="blog-card" style="display:flex;gap:2rem;align-items:center;">
+          <div style="flex:1;">
+            <div class="blog-meta">JANUARY 2026 · AI Learning</div>
+            <div class="blog-title" style="font-size:1.2rem;">Why I'm Learning AI After Cloud</div>
+            <p class="blog-excerpt" style="margin-top:0.5rem;">Cloud infrastructure is the foundation — but AI is where the industry is heading. Here's why I'm combining both and what my roadmap looks like.</p>
+            <div class="tags" style="margin-top:1rem;">
+              <span class="tag tag-ai">AI</span>
+              <span class="tag tag-neutral">Career</span>
+            </div>
+          </div>
+          <a class="btn btn-ghost" style="flex-shrink:0;font-size:0.8rem;" href="#">Read →</a>
+        </div>
+
+      </div>
+    </section>
+  </div><!-- /page-blog -->
+
+
+  <!-- ══════════════════════════════════════════
+       PAGE: ABOUT
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-about">
+    <section>
+      <div class="about-grid">
+        <div>
+          <div class="about-avatar">👨‍💻</div>
+        </div>
+        <div class="about-text">
+          <span class="section-tag">// about_me</span>
+          <h2>Cloud & AI <span style="color:var(--azure-light)">Engineer</span><br/>in Progress.</h2>
+          <p style="margin-top:1rem;">
+            I'm an IT professional based in <strong>Zurich, Switzerland</strong>, transitioning into cloud and AI engineering. After years in IT, I decided to go all-in on the technologies shaping the future.
+          </p>
+          <p>
+            My focus is on building <strong>real-world infrastructure</strong> — not just following tutorials, but designing, deploying and documenting complete cloud environments from scratch.
+          </p>
+          <p>
+            I believe the best way to learn is to <strong>build in public</strong>. Every lab, every failure, every fix gets documented — on this site and on GitHub.
+          </p>
+          <div class="skills-list">
+            <span class="tag tag-azure">Microsoft Azure</span>
+            <span class="tag tag-aws">AWS</span>
+            <span class="tag tag-ai">AI / ML</span>
+            <span class="tag tag-ai">Python</span>
+            <span class="tag tag-neutral">Networking</span>
+            <span class="tag tag-neutral">Linux</span>
+            <span class="tag tag-neutral">Security</span>
+            <span class="tag tag-neutral">Terraform</span>
+            <span class="tag tag-azure">Bicep / ARM</span>
+          </div>
+          <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+            <button class="btn btn-primary" onclick="showPage('projects')">View Projects</button>
+            <a class="btn btn-ghost" href="https://github.com/thino-cloud" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div><!-- /page-about -->
+
+
+  <!-- ══════════════════════════════════════════
+       PAGE: CONTACT
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-contact">
+    <section>
+      <div class="section-header">
+        <span class="section-tag">// contact</span>
+        <h2 class="section-title">Let's <span>Connect</span></h2>
+        <p class="section-sub">Open to opportunities, collaborations and cloud conversations. Based in Zurich 🇨🇭</p>
+      </div>
+
+      <div class="contact-grid">
+        <a class="contact-card" href="https://github.com/thino-cloud" target="_blank">
+          <div class="contact-icon">⌥</div>
+          <div class="contact-name">GitHub</div>
+          <div class="contact-handle">thino-cloud</div>
+        </a>
+        <a class="contact-card" href="https://linkedin.com" target="_blank">
+          <div class="contact-icon">💼</div>
+          <div class="contact-name">LinkedIn</div>
+          <div class="contact-handle">Connect with me</div>
+        </a>
+        <a class="contact-card" href="mailto:hello@thino.dev">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-name">Email</div>
+          <div class="contact-handle">hello@thino.dev</div>
+        </a>
+        <div class="contact-card" style="cursor:default;">
+          <div class="contact-icon">📍</div>
+          <div class="contact-name">Location</div>
+          <div class="contact-handle">Zurich, Switzerland</div>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem;">
+        <div class="cta-section">
+          <h2 style="font-size:1.8rem;">Let's connect 👋</h2>
+          <p>Always happy to chat about cloud, AI, or anything tech.</p>
+          <a class="btn btn-primary" href="mailto:hello@thino.dev">Send a message</a>
+        </div>
+      </div>
+    </section>
+  </div><!-- /page-contact -->
+
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <a href="#" onclick="showPage('home')">thino.dev</a> · Cloud & AI Journey · Zurich 🇨🇭</p>
+    <p>Built with HTML · Hosted on GitHub Pages</p>
+  </footer>
+
+  <script>
+    function showPage(name) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      // Show target
+      document.getElementById('page-' + name).classList.add('active');
+      // Update nav
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      document.getElementById('nav-' + name)?.classList.add('active');
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function filterProjects(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#projects-grid .card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
         }
-    });
-});
-</script>
+      });
+    }
 
+    // Animate cards on page load
+    document.querySelectorAll('.card, .cert-card, .blog-card, .focus-card').forEach((el, i) => {
+      el.style.animationDelay = (i * 0.07) + 's';
+      el.classList.add('fade-in');
+    });
+  </script>
 </body>
 </html>
